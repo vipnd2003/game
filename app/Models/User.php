@@ -29,4 +29,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'code',
     ];
+
+    public function ability()
+    {
+        return $this->hasOne('App\Models\Ability');
+    }
 }

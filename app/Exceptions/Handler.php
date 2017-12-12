@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 		if ($request->wantsJson() || $request->is('api/*')) {
-            return (new \App\Exceptions\ApiExceptionPresenter($exception))->toResponse();
+            return (new \App\Exceptions\ApiExceptionPresenter($e))->toResponse();
         }
 		
         return parent::render($request, $e);

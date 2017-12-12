@@ -66,7 +66,7 @@ class ApiExceptionPresenter
         } else {
             $code = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
-		
+
         if ($this->exception instanceof ValidationException) {
             $errors = $this->exception->validator->errors()->getMessages();
             $message = '';
@@ -84,7 +84,7 @@ class ApiExceptionPresenter
         } else {
             $message = isset($httpMessages[$code]) ? self::$httpMessages[$code] : '';
         }
-		
+
         return json([])->withCode($code)->withMessage($message);
     }
 }

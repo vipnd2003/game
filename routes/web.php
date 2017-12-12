@@ -14,3 +14,14 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+$app->group(['prefix' => 'api/'], function() use ($app) {
+    $app->post('login', 'UserController@authenticate');
+    $app->post('user', 'UserController@create');
+    $app->post('sync', 'UserController@sync');
+
+    $app->group(['middleware' => ['auth:api']], function() use ($app) {
+        $app->put('user', 'UserController@update');
+        $app->put('ability', 'AbilityController@update');
+    });
+});
